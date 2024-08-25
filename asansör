@@ -1,0 +1,196 @@
+class Building {
+    private Elevator[] elevators = new Elevator[5];
+    private Floor[] floors = new Floor[12];
+
+    public Building() {
+        for (int i = 0; i < 5; i++) {
+            elevators[i] = new Elevator(i);
+        }
+        for (int i = 0; i < 12; i++) {
+            floors[i] = new Floor(i);
+        }
+    }
+
+    public Elevator[] getElevators() {
+        return elevators;
+    }
+
+    public Floor[] getFloors() {
+        return floors;
+    }
+}
+
+class Elevator {
+    private int id;
+    private int capacity = 6;
+    private int currentFloor = 0;
+    private String status = "idle";
+    private boolean doorOpen = false;
+    private ControlPanel controlPanel;
+
+    public Elevator(int id) {
+        this.id = id;
+        this.controlPanel = new ControlPanel(this);
+    }
+
+    public void moveToFloor(int targetFloor) {
+        // Asansörü hedef kata hareket ettirme
+    }
+
+    public void openDoor() {
+        this.doorOpen = true;
+    }
+
+    public void closeDoor() {
+        this.doorOpen = false;
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class ControlPanel {
+    private Elevator elevator;
+    private boolean[] floorButtons = new boolean[12];
+    private boolean doorOpenButton;
+    private boolean doorCloseButton;
+    private boolean emergencySignalButton;
+
+    public ControlPanel(Elevator elevator) {
+        this.elevator = elevator;
+    }
+
+    public void pressFloorButton(int floor) {
+        floorButtons[floor] = true;
+    }
+
+    public void pressDoorOpenButton() {
+        doorOpenButton = true;
+        elevator.openDoor();
+    }
+
+    public void pressDoorCloseButton() {
+        doorCloseButton = true;
+        elevator.closeDoor();
+    }
+
+    public void pressEmergencySignalButton() {
+        emergencySignalButton = true;
+    }
+
+    // Diğer metotlar
+}
+
+class Floor {
+    private int floorNumber;
+    private ElevatorDoor[] elevatorDoors = new ElevatorDoor[5];
+    private CallButton upButton = new CallButton("up");
+    private CallButton downButton = new CallButton("down");
+    private ArrivalBell arrivalBell = new ArrivalBell();
+
+    public Floor(int floorNumber) {
+        this.floorNumber = floorNumber;
+        for (int i = 0; i < 5; i++) {
+            elevatorDoors[i] = new ElevatorDoor(i);
+        }
+    }
+
+    public void callElevator(String direction) {
+        // Asansör çağırma mantığı
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class ElevatorDoor {
+    private int doorId;
+    private boolean isOpen = false;
+
+    public ElevatorDoor(int doorId) {
+        this.doorId = doorId;
+    }
+
+    public void openDoor() {
+        isOpen = true;
+    }
+
+    public void closeDoor() {
+        isOpen = false;
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class ArrivalBell {
+    private boolean isActive = false;
+
+    public void ring() {
+        isActive = true;
+        // Zil çalma mantığı
+    }
+
+    public void reset() {
+        isActive = false;
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class CallButton {
+    private String type;
+    private boolean pressed = false;
+
+    public CallButton(String type) {
+        this.type = type;
+    }
+
+    public void press() {
+        pressed = true;
+        // Çağrı düğmesine basma mantığı
+    }
+
+    public void reset() {
+        pressed = false;
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class Passenger {
+    private int currentFloor;
+    private int destinationFloor;
+
+    public Passenger(int currentFloor, int destinationFloor) {
+        this.currentFloor = currentFloor;
+        this.destinationFloor = destinationFloor;
+    }
+
+    public void requestElevator() {
+        // Asansör çağırma mantığı
+    }
+
+    // Diğer getter ve setter metotları
+}
+
+class Simulator {
+    private Clock clock = new Clock();
+    private PassengerGenerator passengerGenerator = new PassengerGenerator();
+
+    public void startSimulation() {
+        // Simülasyonu başlatma mantığı
+    }
+
+    // Diğer metotlar
+}
+
+class Clock {
+    public void tick() {
+        // Zaman geçişini simüle etme mantığı
+    }
+}
+
+class PassengerGenerator {
+    public Passenger generatePassenger() {
+        // Rastgele yolcu oluşturma mantığı
+        return new Passenger(0, 0);
+    }
+}
